@@ -2,7 +2,7 @@ FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
 
 MAINTAINER Rafael Palomar <rafael.palomar@rr-research.no>
 
-ARG DEBIAN_FRONTEND=noninteractie
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils git curl emacs-nox\
@@ -20,7 +20,8 @@ RUN pip3 install pandas\
 		 tensorflow-gpu==1.13.0rc0\
 		 scipy\
 		 scikit-image\
-		 keras
+		 keras\
+		 sklearn
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
