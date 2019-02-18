@@ -20,7 +20,8 @@ RUN pip3 install pandas\
 		 tensorflow-gpu==1.13.0rc0\
 		 scipy\
 		 scikit-image\
-		 keras
+		 keras\
+		 sklearn
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
