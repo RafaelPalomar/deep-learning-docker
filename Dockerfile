@@ -1,27 +1,24 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:9.0-cudnn7-devel
 
 MAINTAINER Rafael Palomar <rafael.palomar@rr-research.no>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    apt-utils git curl emacs-nox\
-    build-essential cmake \
+    apt-utils emacs-nox\
     python3-pip\
-    python3-opencv\
-    python3-tk\
-    libnvidia-compute-390\
-    sudo
+    sudo\
+    cuda-cublas-9-0
 
 RUN pip3 install setuptools
 RUN pip3 install pandas\
-		 nibabel\
-		 imgaug\
-		 tensorflow-gpu==1.13.0rc0\
+		 tensorflow-gpu\
 		 scipy\
 		 scikit-image\
 		 keras\
 		 sklearn
+
+ENV LD_LIBRARY_PATH="${PATH}:/usr/local/cuda-9.0/targets/x86_64-linux/lib/"
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
