@@ -11,15 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cuda-cublas-9-0
 
 RUN pip3 install setuptools
-RUN pip3 install pandas\
-		 tensorflow-gpu\
-		 scipy\
-		 scikit-image\
-		 keras\
-		 sklearn
-
-ENV LD_LIBRARY_PATH="${PATH}:/usr/local/cuda-9.0/targets/x86_64-linux/lib/"
-
+RUN pip3 install  scikit-image
+		 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/developer && \
