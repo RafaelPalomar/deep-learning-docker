@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-devel
+FROM nvcr.io/nvidia/tensorflow:19.03-py3
 
 MAINTAINER Rafael Palomar <rafael.palomar@rr-research.no>
 
@@ -7,8 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils emacs-nox\
     python3-pip\
-    sudo\
-    cuda-cublas-9-0
+    sudo
 
 RUN pip3 install setuptools
 RUN pip3 install  scikit-image
