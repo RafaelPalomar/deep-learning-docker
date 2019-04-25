@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:19.03-py3
+FROM nvcr.io/nvidia/tensorflow:19.03-py2
 
 MAINTAINER Rafael Palomar <rafael.palomar@rr-research.no>
 
@@ -6,11 +6,17 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils emacs-nox\
-    python3-pip\
+    python-pip\
     sudo
 
-RUN pip3 install setuptools
-RUN pip3 install  scikit-image
+RUN pip install setuptools\
+    		scikit-image\
+		h5py\
+		MedPy\
+		scipy\
+		Keras\
+		nibabel\
+		Pillow
 		 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
