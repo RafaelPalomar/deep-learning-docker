@@ -5,19 +5,29 @@ MAINTAINER Rafael Palomar <rafael.palomar@rr-research.no>
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    apt-utils emacs-nox\
-    python3-pip\
-    sudo
+	apt-utils emacs-nox\
+	python3-pip\
+	sudo\
+	libsm-dev\
+	libxrender-dev\
+	libxext-dev
+
+
 
 RUN pip3 install setuptools\
-    		scikit-image\
-		h5py\
-		MedPy\
-		scipy\
-		Keras\
-		nibabel\
-		Pillow
-		 
+	scikit-image\
+	h5py\
+	MedPy\
+	scipy\
+	Keras\
+	nibabel\
+	Pillow\
+	torch\
+	numpy==1.14.0\
+	opencv-python==3.3.0.10\
+	tqdm==4.19.4\
+	torchvision
+
 # Replace 1000 with your user / group id
 RUN export uid=1008 gid=1008 && \
     mkdir -p /home/developer && \
