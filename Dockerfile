@@ -16,7 +16,8 @@ RUN pip3 install setuptools\
 	scipy\
 	Keras\
 	nibabel\
-	Pillow
+	Pillow\
+	tqdm
 		 
 # Replace 1000 with your user / group id
 RUN export uid=1008 gid=1008 && \
