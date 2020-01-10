@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:19.03-py3
+FROM nvcr.io/nvidia/pytorch:19.11-py3
 
 MAINTAINER Rafael Palomar <rafael.palomar@rr-research.no>
 
@@ -10,17 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	sudo
 
 RUN pip3 install setuptools\
-	scikit-image\
-	h5py\
-	MedPy\
-	scipy\
-	Keras\
-	nibabel\
-	Pillow\
-	tqdm
+	tqdm\
+	opencv-python\
+	torchvision
 		 
 # Replace 1000 with your user / group id
-RUN export uid=1008 gid=1008 && \
+RUN export uid=1013 gid=1013 && \
 	mkdir -p /home/developer && \
 	echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
 	echo "developer:x:${uid}:" >> /etc/group && \
