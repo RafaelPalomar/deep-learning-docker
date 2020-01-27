@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:19.11-py3
+FROM nvcr.io/nvidia/tensorflow:19.06-py3
 
 MAINTAINER Rafael Palomar <rafael.palomar@rr-research.no>
 
@@ -7,15 +7,20 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	apt-utils emacs-nox\
 	python3-pip\
-	sudo
+	sudo\
+	libsm-dev\
+	libxrender-dev\
+	libxext-dev
 
-RUN pip3 install setuptools\
-	tqdm\
+RUN pip install setuptools\
+	scikit-image\
 	opencv-python\
-	torchvision
+	SimpleITK\
+	tqdm\
+	niftynet
 		 
 # Replace 1000 with your user / group id
-RUN export uid=1013 gid=1013 && \
+RUN export uid=1012 gid=1012 && \
 	mkdir -p /home/developer && \
 	echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
 	echo "developer:x:${uid}:" >> /etc/group && \
